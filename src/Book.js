@@ -9,9 +9,6 @@ class Book extends React.Component {
     handlerBookShelfChanger = event => {
         event.preventDefault();
 
-        // 1. get book id
-        // 2. get change value
-
         const bookId = event.target.id;
         const shelf = event.target.value;
 
