@@ -142,6 +142,15 @@ button:active {
 .book {
   width: 140px;
 }
+.book-authors-list {
+  padding: 0;
+}
+.book-authors-list li {
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
 
 .book-title,
 .book-authors {

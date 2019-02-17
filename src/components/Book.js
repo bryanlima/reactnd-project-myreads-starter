@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Book extends React.Component {
+export default class Book extends React.PureComponent {
 
   static propTypes = {
-    onBookShelfChange: PropTypes.func.isRequired
+    onBookShelfChange: PropTypes.func.isRequired,
+    book: PropTypes.object.isRequired
   }
 
   bookCover(urlImg) {
@@ -19,11 +20,13 @@ export default class Book extends React.Component {
     );
   }
 
-  bookShelfChanger(bookId) {
+  disableOptionIfEqual = (shelf, bookShelf) => shelf === bookShelf ? "disabled" : "";
+
+  bookShelfChanger(book) {
 
     return (
       <div className="book-shelf-changer">
-        <select id={bookId} onChange={(event) => this.handlerBookShelfChanger(event)}>
+        <select key={book.id} onChange={(event) => this.handlerBookShelfChanger(event, book)}>
           <option value="move" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
@@ -34,28 +37,27 @@ export default class Book extends React.Component {
     );
   }
 
-  handlerBookShelfChanger(event) {
+  handlerBookShelfChanger(event, book) {
 
     event.preventDefault();
-
-    const bookId = event.target.id;
     const shelf = event.target.value;
-
-    this.props.onBookShelfChange(shelf, bookId);
+    this.props.onBookShelfChange(shelf, book);
   }
 
   render() {
 
-    const book = this.props.book;
+    const { book } = this.props;
 
     return (
       <div className="book">
         <div className="book-top">
-          {this.bookCover(book.imageLinks.smallThumbnail)}
-          {this.bookShelfChanger(book.id)}
+          {book.imageLinks && (this.bookCover(book.imageLinks.smallThumbnail))}
+          {this.bookShelfChanger(book)}
         </div>
         <div className="book-title">{book.title}</div>
-        {book.authors.map(author => <div className="book-authors">{author}</div>)}
+        <ul className="book-authors-list">
+          {book.authors && (book.authors.map(author => <li className="book-authors">{author}</li>))}
+        </ul>
       </div>
     );
   }

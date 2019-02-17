@@ -2,11 +2,12 @@ import React from 'react';
 import Book from './Book';
 import PropTypes from 'prop-types';
 
-export default class BookShelf extends React.Component {
+export default class BookShelf extends React.PureComponent {
 
   static propTypes = {
     shelf: PropTypes.string.isRequired,
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    onBookShelfChange: PropTypes.func.isRequired
   }
 
   render() {

@@ -2,7 +2,7 @@ import React from 'react';
 import BookShelf from './BookShelf';
 import PropTypes from 'prop-types';
 
-export default class ListBooks extends React.Component {
+export default class ListBooks extends React.PureComponent {
 
   static propTypes = {
     books: PropTypes.array.isRequired,
