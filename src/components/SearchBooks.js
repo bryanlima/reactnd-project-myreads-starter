@@ -40,6 +40,10 @@ export default class SearchBooks extends React.Component {
     this.props.onSearch(event.target.value);
   }
 
+  async componentWillUnmount() {
+    this.props.onSearch(null);
+  }
+
   render() {
     const { books } = this.props;
 
