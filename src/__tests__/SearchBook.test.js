@@ -1,9 +1,11 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import ListBooks from '../components/ListBooks';
+import SearchBooks from '../components/SearchBooks';
+import { MemoryRouter } from 'react-router-dom';
 
-describe('ListBooks component', () => {
-  it('Render <ListBooks /> component', () => {
+describe('SearchBook component', () => {
+
+  it('Render <SearchBook /> component', () => {
 
     const books = [
       {
@@ -50,10 +52,16 @@ describe('ListBooks component', () => {
 
     const mockProps = {
       books,
-      onBookShelfChange: jest.fn()
+      onBookShelfChange: jest.fn(),
+      onSearch: jest.fn()
     }
 
-    const wrapper = mount(<ListBooks {...mockProps} />);
-    expect(wrapper.find(".bookshelf-title").length).toEqual(3);
-  })
+    const wrapper = mount(
+      <MemoryRouter>
+        <SearchBooks {...mockProps} />
+      </MemoryRouter>);
+
+    wrapper.find("#search-books").simulate("change", { target: { value: "book 3" } });
+    expect(mockProps.onSearch).toHaveBeenCalled();
+  });
 });

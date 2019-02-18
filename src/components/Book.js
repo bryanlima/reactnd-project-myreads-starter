@@ -20,13 +20,11 @@ export default class Book extends React.PureComponent {
     );
   }
 
-  disableOptionIfEqual = (shelf, bookShelf) => shelf === bookShelf ? "disabled" : "";
-
   bookShelfChanger(book) {
 
     return (
       <div className="book-shelf-changer">
-        <select key={book.id} onChange={(event) => this.handlerBookShelfChanger(event, book)}>
+        <select id={book.id} onChange={(event) => this.handlerBookShelfChanger(event, book)}>
           <option value="move" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>

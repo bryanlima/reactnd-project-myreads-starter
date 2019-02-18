@@ -7,7 +7,8 @@ export default class SearchBooks extends React.Component {
 
   static propTypes = {
     books: PropTypes.array.isRequired,
-    onBookShelfChange: PropTypes.func.isRequired
+    onBookShelfChange: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired
   }
 
   bookResultGrid(books, onBookShelfChange) {
@@ -53,12 +54,12 @@ export default class SearchBooks extends React.Component {
           </Link>
           <div className="search-books-input-wrapper">
             <input
+              id='search-books'
               ref={input => input && input.focus()}
               onChange={(event) => this.updateQuery(event)}
               type="text"
               placeholder="Search by title or author"
             />
-
           </div>
         </div>
         {this.bookResult(books)}
