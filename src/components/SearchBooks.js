@@ -54,7 +54,7 @@ export default class SearchBooks extends React.Component {
             to='/'
             className='close-search'
             value='Close'>
-              Close
+            Close
           </Link>
           <div className="search-books-input-wrapper">
             <input

@@ -25,7 +25,6 @@ describe('<Book />', () => {
     const wrapper = mount(<Book {...mockProps} />);
     wrapper.find("#" + book.id).simulate('change', { target: { id: book.id, value: "read" } });
     expect(mockProps.onBookShelfChange).toHaveBeenCalled();
-    // expect(Book.prototype.componentDidMount).to.have.property('callCount', 1);
   });
 
   it('Render <Book /> component with no book authors and book image', () => {
@@ -46,46 +45,3 @@ describe('<Book />', () => {
     expect(mockBookProps.onBookShelfChange).toHaveBeenCalled();
   });
 });
-
-
-
-// import React from 'react';
-// import PropTypes from 'prop-types';
-// import sinon from 'sinon';
-// import { shallow, mount } from 'enzyme';
-
-// const willMount = sinon.spy();
-// const didMount = sinon.spy();
-// const willUnmount = sinon.spy();
-
-// class Foo extends React.Component {
-//   // constructor(props) {
-//   //   super(props);
-//   //   // this.componentWillUnmount = willUnmount;
-//   //   // this.componentWillMount = willMount;
-//   //   // this.componentDidMount = didMount;
-//   // }
-
-//   componentDidMount() {
-
-//   }
-
-//   render() {
-//     const { id } = this.props;
-//     return (
-//       <div className={id}>
-//         {id}
-//       </div>
-//     );
-//   }
-// }
-// Foo.propTypes = {
-//   id: PropTypes.string.isRequired,
-// };
-
-// // it('Render <Foo /> component', () => {
-
-// //   const spy = jest.spyOn(Foo.prototype, 'componentDidMount');
-// //   const wrapper = mount(<Foo id="foo" />);
-// //   expect(spy).toHaveBeenCalled();
-// // });
